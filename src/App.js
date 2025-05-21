@@ -97,13 +97,50 @@ const AutomatonSimulator = ({
     });
   };
 
-  useEffect(() => {
-    if (view === "DFA") {
-      drawGraph("q0");
-      setInput("");
-      setResult("");
-    }
-  }, [view]);
+useEffect(() => {
+  if (view === "DFA") {
+    const drawGraph = (state) => {
+      let dot = `digraph NFA {
+        rankdir=LR;
+        size="20,10";
+        node [shape=circle fontcolor=black];
+        start [label="", shape=none];
+        start -> q0;
+      `;
+
+      for (let s in dfa) {
+        const style = acceptStates.has(s) ? "doublecircle" : "circle";
+        const highlight = s === state ? "style=filled fillcolor=red fontcolor=white" : "";
+        dot += `${s} [shape=${style} ${highlight}];\n`;
+      }
+
+      for (let [s, trans] of Object.entries(dfa)) {
+        for (let [sym, targets] of Object.entries(trans)) {
+          for (let t of targets) {
+            dot += `${s} -> ${t} [label="${sym}"];\n`;
+          }
+        }
+      }
+
+      dot += "}";
+
+      const viz = new Viz({ Module, render });
+      viz.renderSVGElement(dot).then((el) => {
+        const container = document.getElementById(`graph-${title}`);
+        if (container) {
+          container.innerHTML = "";
+          el.style.width = "100%";
+          container.appendChild(el);
+        }
+      });
+    };
+
+    drawGraph("q0");
+    setInput("");
+    setResult("");
+  }
+}, [view, dfa, acceptStates, title]);
+
 
   const simulate = async () => {
     if (!new RegExp(`^[${alphabet.replace(/[^a-z0-9]/gi, "")}]*$`).test(input)) {
