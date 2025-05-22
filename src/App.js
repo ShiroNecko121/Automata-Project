@@ -255,7 +255,7 @@ S → ABCDEFH
 A → a | b | aa | bb | aba 
 B → aB | bB | bbB | aaB | ε 
 C → a | b | aa | bb 
-D → aD | Bd | ε 
+D → aD | bD | ε 
 E → ab | ba | bab | aba 
 F → ab | bb | abb | bab | aa 
 H → aH | bH | ε `}
