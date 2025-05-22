@@ -249,15 +249,16 @@ export default function App() {
         acceptStates={accept1}
         alphabet="a, b"
         cfg={`CFG for Question 1:
-G = ( {S, A, B, C, D, E, F}, {a, b}, S )
-
-S → ABCDEFD
-A → a | b | aa | bb | aba
-B → aB | bB | bbB | aaB | ε
-C → a | b | aa | bb
-D → aD | Bd | ε
-E → ab | ba | bab | aba
-F → ab | bb | abb | bab | aa`}
+G = ( {S, A, B, C, D, E, F, H}, {a, b}, P, S ) 
+P: 
+S → ABCDEFH 
+A → a | b | aa | bb | aba 
+B → aB | bB | bbB | aaB | ε 
+C → a | b | aa | bb 
+D → aD | Bd | ε 
+E → ab | ba | bab | aba 
+F → ab | bb | abb | bab | aa 
+H → aH | bH | ε `}
         hasPDA={true}
         pdaImage="/pda1.jpg"
       />
@@ -269,15 +270,16 @@ F → ab | bb | abb | bab | aa`}
         acceptStates={accept2}
         alphabet="0 , 1"
         cfg={`CFG for Question 2:
-G = ( {S, A, B, C, D, E, F}, {0, 1}, S )
-
-S → ABCDEBF
-A → 1 | 0
-B → 1B | 0B | ε
-C → 11C | 00C | 01C | 10C | ε
-D → 11 | 00 | 01 | 10
-E → 1010 | 001 | 111 | 000
-F → 101 | 011 | 111 | 010`}
+G = ( {S, A, B, C, D, E, F, H}, {0, 1}, P, S ) 
+P: 
+S → ABCDEFH 
+A → 1 | 0 
+B → 1B | 0B | ε 
+C → 11C | 00C | 01C | 10C | ε 
+D → 11 | 00 | 01 | 10 
+E → 1010 | 001 | 111 | 000 
+F → 1F | 0F | ε 
+H → 101 | 011 | 111 | 010 `}
         hasPDA={true}
         pdaImage="/pda2.jpg"
 
@@ -297,7 +299,7 @@ F → 101 | 011 | 111 | 010`}
     </div>
     <div className="member">
       <img src="/student3.jpg" alt="Student 3" />
-      <p>Da Silva Henriques Ferreira, Jessica Alen</p>
+      <p>Ferreira, Jessica Alen</p>
     </div>
     <div className="member">
       <img src="/student4.jpg" alt="Student 4" />
